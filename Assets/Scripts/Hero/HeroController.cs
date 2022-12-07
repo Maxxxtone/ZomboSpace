@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
-    public static HeroController instace;
+    public static HeroController Instance;
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _horizontalConstraint = 8f, _verticalConstraint = 3.5f;
     [SerializeField] private GameObject _jetpackParticles;
@@ -16,7 +16,7 @@ public class HeroController : MonoBehaviour
 
     private void Awake()
     {
-        instace = this;
+        Instance = this;
     }
     private void Start()
     {
@@ -42,13 +42,6 @@ public class HeroController : MonoBehaviour
         _jetpackParticles.SetActive(true);
         _timer = _jetpackTime;
         _speedIncreased = true;
-        /*if (!_speedIncreased)
-            StartCoroutine(SpeedUp());
-        else
-        {
-            StopCoroutine(SpeedUp());
-            StartCoroutine(SpeedUp());
-        }*/
     }
     private void Move()
     {
@@ -65,15 +58,5 @@ public class HeroController : MonoBehaviour
             LeanTween.rotateY(gameObject, 180, .25f);
         else if (transform.position.x < targetX)
             LeanTween.rotateY(gameObject, 0, .25f);
-    }
-    private IEnumerator SpeedUp()
-    {
-        _jetpackParticles.SetActive(true);
-        _speedIncreased = true;
-        _speed += 1f;
-        yield return new WaitForSeconds(5f);
-        _speedIncreased = false;
-        _jetpackParticles.SetActive(false);
-        _speed -= 1f;
     }
 }

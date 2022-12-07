@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     [SerializeField] private GameObject _gameOverPanel;
-    [SerializeField] private TextMeshProUGUI _scoreText, _creditText, _adCreditText;
+    [SerializeField] private TextMeshProUGUI _scoreText/*, _creditText, _adCreditText*/;
     private void Awake()
     {
         instance = this;
@@ -26,8 +26,8 @@ public class UIManager : MonoBehaviour
     public void ShowScore(int score, int credits, int adCredits)
     {
         _scoreText.text = score.ToString();
-        _creditText.text = credits.ToString();
-        _adCreditText.text = adCredits.ToString();
+        /*_creditText.text = credits.ToString();
+        _adCreditText.text = adCredits.ToString();*/
     }
     public void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     public void SwitchScene(int sceneIndex)

@@ -6,6 +6,6 @@ public class Jetpack : Buff
 {
     protected override void MakeBuffEffect()
     {
-        HeroController.instace.IncreaseSpeed();
+        HeroController.Instance.IncreaseSpeed();
     }
 }

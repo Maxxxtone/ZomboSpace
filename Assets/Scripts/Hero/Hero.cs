@@ -29,7 +29,7 @@ public class Hero : MonoBehaviour
     }
     private void OnEnable()
     {
-        //OnHeroDead += UIManager.instance.ShowGameOverPanel;
+        //OnHeroDead += GameLoop.instance.StopCountScore;
     }
     private void Update()
     {
@@ -61,13 +61,17 @@ public class Hero : MonoBehaviour
     {
         _hp = Mathf.Clamp(value,0,_maxHp);
         _hpBar.fillAmount = (float) _hp / _maxHp;
+        if (_hp <= 10)
+            _hpDecreaseTimer = .75f;
+        else
+            _hpDecreaseTimer = .5f;
         if (_hp <= 0)
         {
             UIManager.instance.ShowGameOverPanel();
             _animator.SetTrigger("dead");
             OnHeroDead?.Invoke();
-            //ObjectPooler.instance.spawning = false;
-            HeroController.instace.enabled = false;
+            ObjectPooler.instance.spawning = false;
+            HeroController.Instance.enabled = false;
             enabled = false;
         }
     }
